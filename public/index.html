@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WorldPulse — Country News, Weather & Facts</title>
+  <meta name="description" content="Search any country or city to instantly see live weather, top news headlines, and key country facts — all in one place.">
+  <meta name="theme-color" content="#0a0e1a">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>">
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ── Header ──────────────────────────────────────────────────────────── -->
+  <header>
+    <div class="logo">
+      <div class="logo-icon">🌍</div>
+      <h1>WorldPulse</h1>
+    </div>
+    <p class="tagline">Live weather · breaking news · country facts — all in one search</p>
+  </header>
+
+  <!-- ── Search Bar ───────────────────────────────────────────────────────── -->
+  <div class="search-wrap">
+    <input
+      id="search-input"
+      type="text"
+      placeholder="Search a country or city… e.g. Pakistan, Japan, Brazil"
+      autocomplete="off"
+      aria-label="Country or city search"
+    >
+    <button id="search-btn" aria-label="Search">
+      Search →
+    </button>
+  </div>
+
+  <!-- ── Quick Chips ──────────────────────────────────────────────────────── -->
+  <div class="quick-chips" role="group" aria-label="Quick search suggestions">
+    <button class="chip" data-query="Pakistan">🇵🇰 Pakistan</button>
+    <button class="chip" data-query="Japan">🇯🇵 Japan</button>
+    <button class="chip" data-query="Germany">🇩🇪 Germany</button>
+    <button class="chip" data-query="Brazil">🇧🇷 Brazil</button>
+    <button class="chip" data-query="India">🇮🇳 India</button>
+    <button class="chip" data-query="United States">🇺🇸 USA</button>
+    <button class="chip" data-query="Turkey">🇹🇷 Turkey</button>
+  </div>
+
+  <!-- ── Error Banner ─────────────────────────────────────────────────────── -->
+  <div id="error-banner" class="hidden" role="alert" aria-live="assertive">
+    <span>⚠️</span>
+    <span id="error-text"></span>
+  </div>
+
+  <!-- ── Skeleton Loader ──────────────────────────────────────────────────── -->
+  <div id="loading">
+    <div class="skeleton-grid">
+      <div class="skeleton-card">
+        <div class="skeleton-bar h-lg full"></div>
+        <div class="skeleton-bar h-md" style="width:90%;margin-top:8px"></div>
+        <div class="skeleton-bar full" style="height:80px;margin-top:16px"></div>
+        <div class="skeleton-bar h-sm" style="margin-top:16px"></div>
+        <div class="skeleton-bar h-sm full"></div>
+      </div>
+      <div class="skeleton-card">
+        <div class="skeleton-bar h-lg" style="width:70%"></div>
+        <div class="skeleton-bar" style="height:64px;width:64px;border-radius:50%;margin-top:16px"></div>
+        <div class="skeleton-bar h-md full" style="margin-top:16px"></div>
+        <div class="skeleton-bar h-sm" style="margin-top:8px;width:55%"></div>
+      </div>
+    </div>
+    <div class="skeleton-card" style="height:260px">
+      <div class="skeleton-bar h-lg" style="width:40%;margin-bottom:20px"></div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+        <div class="skeleton-bar" style="height:140px"></div>
+        <div class="skeleton-bar" style="height:140px"></div>
+        <div class="skeleton-bar" style="height:140px"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Welcome State ────────────────────────────────────────────────────── -->
+  <div id="welcome">
+    <span class="world-emoji">🌍</span>
+    <p>Search any country or city above to get started</p>
+  </div>
+
+  <!-- ── Results ──────────────────────────────────────────────────────────── -->
+  <div id="results">
+
+    <!-- Country + Weather side by side -->
+    <div class="top-grid">
+      <div class="card" id="country-card">
+        <!-- Populated by renderCountry() in app.js -->
+      </div>
+      <div class="card" id="weather-card">
+        <!-- Populated by renderWeather() in app.js -->
+      </div>
+    </div>
+
+    <!-- News Section -->
+    <div class="card" style="margin-bottom:32px">
+      <div class="section-header">
+        <span style="font-size:1.2rem">📰</span>
+        <span class="section-title">Latest News</span>
+        <span class="news-count" id="news-count" style="display:none"></span>
+      </div>
+      <div class="news-grid" id="news-container">
+        <!-- Populated by renderNews() in app.js -->
+      </div>
+    </div>
+
+  </div><!-- /#results -->
+
+</div><!-- /.container -->
+
+<!-- ── Footer ───────────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <p>
+      Powered by
+      <a href="https://restcountries.com" target="_blank" rel="noopener">REST Countries</a> ·
+      <a href="https://open-meteo.com"   target="_blank" rel="noopener">Open-Meteo</a> ·
+      <a href="https://newsapi.org"       target="_blank" rel="noopener">NewsAPI</a>
+    </p>
+  </div>
+</footer>
+
+<script src="/app.js"></script>
+</body>
+</html>
